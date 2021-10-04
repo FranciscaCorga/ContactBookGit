@@ -13,7 +13,9 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
+    public static final String EQUAL_PHONE    = "EP";
     public static final String QUIT           = "Q";
+
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
@@ -24,6 +26,8 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String SAME_NUMBER = "There are contacts that share phone numbers.";
+    public static final String DIFF_NUMBER = "All contacts have different phone numbers.";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -53,6 +57,8 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case EQUAL_PHONE:
+                    checkEqualPhone(cBook);
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -146,5 +152,14 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void checkEqualPhone(ContactBook cBook) {
+        if(cBook.checkEqualPhone()){
+            System.out.println(SAME_NUMBER);
+        }
+        else{
+            System.out.println(DIFF_NUMBER);
+        }
     }
 }
